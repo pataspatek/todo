@@ -1,10 +1,15 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<h1>Home</h1>} />
+                <Route path="/todos" element={<h1>Todos</h1>} />
+            </Routes>
+        </BrowserRouter>
+    );
+};
 
-  return (
-    <div>
-      <p>Hello World!</p>
-    </div>
-  )
-}
-
-export default App
+export default App;
