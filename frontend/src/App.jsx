@@ -1,16 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+// Import each view to use in routes
+import HomeView from "./views/home/HomeView";
+import TodosView from "./views/todos/TodosView";
+import NotFoundView from "./views/notfound/NotFoundView";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<h1>Home</h1>} />
-                <Route path="/todos" element={<h1>Todos</h1>} />
-                <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+                <Route path="/" element={<HomeView />} />
+                <Route path="/todos" element={<TodosView />} />
+                <Route path="*" element={<NotFoundView />} />
             </Routes>
         </BrowserRouter>
     );
-};
+}
 
 export default App;
