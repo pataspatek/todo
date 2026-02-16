@@ -25,9 +25,34 @@ function TodosView() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(title)
-        console.log(description)
-    }
+
+        try {
+            const response = await fetch("http://localhost:8000/todos/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: title,
+                    description: description,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("Success")
+            } else {
+                console.warn("Failure")
+            }
+
+            setTitle("");
+            setDescription("");
+
+        } catch (error) {
+            console.error("Error creating todo:", error);
+        }
+    };
 
     useEffect(() => {
         fetchTodos();
