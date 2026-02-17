@@ -3,21 +3,21 @@ import { useEffect, useState } from "react";
 function TodosView() {
     const [todos, setTodos] = useState([]);
 
-const fetchTodos = async () => {
-    try {
-        const response = await fetch("http://localhost:8000/todos/", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+    const fetchTodos = async () => {
+        try {
+            const response = await fetch("http://localhost:8000/todos/", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
-        const data = await response.json();
-        setTodos(data);
-    } catch (error) {
-        console.error("Error fetching todos:", error);
-    }
-};
+            const data = await response.json();
+            setTodos(data);
+        } catch (error) {
+            console.error("Error fetching todos:", error);
+        }
+    };
 
     useEffect(() => {
         fetchTodos();
