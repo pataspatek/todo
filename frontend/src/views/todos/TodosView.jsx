@@ -16,7 +16,7 @@ function TodosView() {
             });
 
             const data = await response.json();
-            setTodos(data)
+            setTodos(data);
         } catch (error) {
             console.error("Error fetching todos:", error);
         }
