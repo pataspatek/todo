@@ -54,6 +54,30 @@ function TodosView() {
         }
     };
 
+
+    const toggleTodo = async (todo) => {
+        try {
+            const response = await fetch(`http://localhost:8000/todos/${todo.id}/`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    completed: !todo.completed,
+                }),
+            });
+
+            if (response.ok) {
+                console.log("Todo updated");
+            } else {
+                console.warn("Failed to update todo");
+            }
+        } catch (error) {
+            console.error("Error updating todo:", error);
+        }
+    };
+
+
     useEffect(() => {
         fetchTodos();
     }, [])
@@ -69,6 +93,9 @@ function TodosView() {
                             <span>{todo.completed ? "✅" : "❌"}</span>
                         </h3>
                         <p>{todo.description}</p>
+                        <button onClick={() => toggleTodo(todo)}>
+                            {todo.completed ? "Mark as Incomplete" : "Mark as Done"}
+                        </button>
                     </li>
                 ))}
             </ul>

@@ -21,3 +21,19 @@ def add(request):
         return Response(serializer.data, status=201)
 
     return Response(serializer.errors, status=400)
+
+
+@api_view(["PATCH"])
+def update_todo(request, pk):
+    try:
+        todo = Todo.objects.get(id=pk)
+    except Todo.DoesNotExist:
+        return Response({"error": "Todo not found"}, status=404)
+
+    serializer = TodoSerializer(todo, data=request.data, partial=True)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+
+    return Response(serializer.errors, status=400)
