@@ -4,5 +4,5 @@ from . import views
 urlpatterns = [
     path("", views.index, name="index"),
     path("add/", views.add, name="add"),
-    path("<int:pk>/", views.update_todo, name="update")
+    path("toggle/<int:pk>/", views.update_todo, name="update")
 ]

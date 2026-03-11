@@ -57,7 +57,7 @@ function TodosView() {
 
     const toggleTodo = async (todo) => {
         try {
-            const response = await fetch(`http://localhost:8000/todos/${todo.id}/`, {
+            const response = await fetch(`http://localhost:8000/todos/toggle/${todo.id}/`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
